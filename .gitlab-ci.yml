@@ -17,12 +17,18 @@ version:
     - docker:dind
   before_script:
     - apk update && apk add git python3 py-pip
+    - git remote remove origin
     - git config --global user.name "Git versioning"
+    - git config --global user.email ""
     - git checkout $CI_COMMIT_REF_NAME
+    - git remote add origin https://CI_BOT:$CI_KEY@git.rz.tu-bs.de/akustik/software-versioning-example
     - git status
   script:
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 tools/calver/cCalVer.py
+    - cat version.txt
+    - ls
+    - git status
     - source version.txt
     - echo $SOFTWARE_CALVER
     - git tag -a $SOFTWARE_CALVER
