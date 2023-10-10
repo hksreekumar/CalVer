@@ -56,8 +56,8 @@ class CalVerYYYYMM:
     def bump(self):
         new_tag_pre_text = self.getTagPreText()
         repos_existing_tags = self.getRepositoryTags()
-        repos_branch_name = self.getRepositoryCurrentBranchName()
-        new_tag = self.addLastPatch(new_tag_pre_text, repos_existing_tags, repos_branch_name)
+        #repos_branch_name = self.getRepositoryCurrentBranchName()
+        new_tag = self.addLastPatch(new_tag_pre_text, repos_existing_tags, 'master')
         print(f'New tag is {new_tag}')
         return new_tag
 

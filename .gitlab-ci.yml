@@ -24,7 +24,7 @@ tagging:
     - git status
   script:
     - python3 -m pip install -r tools/calver/requirements.txt
-    - python3 tools/calver/cCalVer.py
+    - python3 tools/calver/cCalVer.py 
     - cat version.txt
     - git status
     - source version.txt
