@@ -3,18 +3,20 @@ stages:
 - release
 
 unit-tests:
+  stage: test
   image: python:3.9
   script:
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 -m pytest tools/calver/
 
 version:
+  stage: release
   image: docker:latest
   timeout: 3 hours
   services:
     - docker:dind
   script:
-    - apk update && apk add git python3
+    - apk update && apk add git python3 python3-pip
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 tools/calver/cCalVer.py
     - cat version.txt
