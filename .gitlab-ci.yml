@@ -17,6 +17,7 @@ version:
     - docker:dind
   script:
     - apk update && apk add git python3 py-pip
+    - git status
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 tools/calver/cCalVer.py
     - cat version.txt
