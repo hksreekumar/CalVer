@@ -35,5 +35,7 @@ version:
   artifacts:
     paths:
       - version.txt
+  only:
+    - branches
   except:
     - tags
