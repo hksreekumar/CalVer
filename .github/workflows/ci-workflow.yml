@@ -43,7 +43,7 @@ jobs:
           git remote remove origin
           git config --global user.name "Git versioning"
           git config --global user.email ""
-          git remote add origin https://CI_BOT:$CI_KEY@github.com/hksreekumar/CalVer
+          git remote add origin https://CI_ACCESS:$CI_KEY@github.com/hksreekumar/CalVer
           git status
           python3 -m pip install -r tools/calver/requirements.txt
           python3 tools/calver/cCalVer.py master
