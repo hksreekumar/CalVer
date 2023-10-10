@@ -18,6 +18,8 @@ version:
   script:
     - apk update && apk add git python3 py-pip
     - git status
+    - git checkout CI_COMMIT_BRANCH
+    - git status
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 tools/calver/cCalVer.py
     - cat version.txt
