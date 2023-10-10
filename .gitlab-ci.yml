@@ -15,12 +15,13 @@ version:
   timeout: 3 hours
   services:
     - docker:dind
+  variables:
+    GIT_STRATEGY: clone
   before_script:
     - apk update && apk add git python3 py-pip
     - git remote remove origin
     - git config --global user.name "Git versioning"
     - git config --global user.email ""
-    - git checkout $CI_COMMIT_REF_NAME
     - git remote add origin https://CI_BOT:$CI_KEY@git.rz.tu-bs.de/akustik/software-versioning-example
     - git status
   script:
