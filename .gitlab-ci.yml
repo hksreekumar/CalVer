@@ -27,8 +27,7 @@ version:
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 tools/calver/cCalVer.py
     - cat version.txt
-    - ls
     - git status
     - source version.txt
     - echo $SOFTWARE_CALVER
-    - git tag -a $SOFTWARE_CALVER
+    - git tag -a $SOFTWARE_CALVER -m "Release version $SOFTWARE_CALVER"
