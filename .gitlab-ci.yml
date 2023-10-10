@@ -34,8 +34,9 @@ version:
     - git push origin $SOFTWARE_CALVER
   artifacts:
     paths:
-      - version.txtrules:
+      - version.txt
   rules:
+    #- if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_COMMIT_TAG
       when: never 
     - when: always
