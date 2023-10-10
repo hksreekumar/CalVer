@@ -15,9 +15,7 @@ version:
   timeout: 3 hours
   services:
     - docker:dind
-  script:
-    - cat tools/calver/cCalVer.py
-    - echo $CI_COMMIT_REF_NAME
+  before_script:
     - apk update && apk add git python3 py-pip
     - git remote remove origin
     - git config --global user.name "Git versioning"
@@ -25,8 +23,8 @@ version:
     - git checkout $CI_COMMIT_REF_NAME
     - git remote add origin https://CI_BOT:$CI_KEY@git.rz.tu-bs.de/akustik/software-versioning-example
     - git status
+  script:
     - python3 -m pip install -r tools/calver/requirements.txt
-    - cat tools/calver/cCalVer.py
     - python3 tools/calver/cCalVer.py
     - cat version.txt
     - git status
