@@ -1,6 +1,6 @@
 stages:
 - test
-- release
+- deploy
 
 unit-tests:
   stage: test
@@ -9,21 +9,19 @@ unit-tests:
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 -m pytest tools/calver/
 
-version:
-  stage: release
+tagging:
+  stage: deploy
   image: docker:latest
   timeout: 3 hours
   services:
     - docker:dind
   before_script:
     - apk update && apk add git python3 py-pip
-    - git checkout $CI_COMMIT_REF_NAME
     - git remote remove origin
     - git config --global user.name "Git versioning"
     - git config --global user.email ""
     - git remote add origin https://CI_BOT:$CI_KEY@git.rz.tu-bs.de/akustik/software-versioning-example
     - git status
-    - git pull
   script:
     - python3 -m pip install -r tools/calver/requirements.txt
     - python3 tools/calver/cCalVer.py
