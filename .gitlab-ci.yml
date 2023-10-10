@@ -24,9 +24,8 @@ tagging:
     - git status
   script:
     - python3 -m pip install -r tools/calver/requirements.txt
-    - python3 tools/calver/cCalVer.py 
+    - python3 tools/calver/cCalVer.py $CI_COMMIT_BRANCH
     - cat version.txt
-    - git status
     - source version.txt
     - echo $SOFTWARE_CALVER
     - git tag -a $SOFTWARE_CALVER -m "Release version $SOFTWARE_CALVER"
@@ -35,7 +34,7 @@ tagging:
     paths:
       - version.txt
   rules:
-    #- if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_COMMIT_TAG
       when: never
     - when: always
