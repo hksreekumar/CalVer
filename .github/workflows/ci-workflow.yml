@@ -45,20 +45,11 @@ jobs:
           git config --global user.email ""
           git remote add origin https://CI_BOT:$CI_KEY@github.com/hksreekumar/CalVer
           git status
-
-      - name: Install Additional Python Dependencies
-        run: |
           python3 -m pip install -r tools/calver/requirements.txt
-
-      - name: Generate Software Version
-        run: |
-          python3 tools/calver/cCalVer.py ${{ github.ref }}
+          python3 tools/calver/cCalVer.py master
           cat version.txt
           source version.txt
           echo $SOFTWARE_CALVER
-
-      - name: Create and Push Git Tag
-        run: |
           git tag -a $SOFTWARE_CALVER -m "Release version $SOFTWARE_CALVER"
           git push origin $SOFTWARE_CALVER
 
