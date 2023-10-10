@@ -40,7 +40,7 @@ class CalVerYYYYMM:
             print('> No tags yet defined for this project')
         
         # filter branches
-        existing_patches = [int(every_tag.split('.')[2]) for every_tag in existing_tags if new_tag in every_tag and '-' not in every_tag]
+        existing_patches = [int(str(every_tag).split('.')[2]) for every_tag in existing_tags if new_tag in str(every_tag) and '-' not in str(every_tag)]
         
         next_patch = '1'
         if len(existing_patches):

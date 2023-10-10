@@ -32,3 +32,6 @@ version:
     - echo $SOFTWARE_CALVER
     - git tag -a $SOFTWARE_CALVER -m "Release version $SOFTWARE_CALVER"
     - git push origin $SOFTWARE_CALVER
+  artifacts:
+    paths:
+      - version.txt
